@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="Links\virus.svg" type="image/svg+xml" />
+    <script
+      src="https://kit.fontawesome.com/ecca2355d7.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <title>COVID-19 Visualizer | Shawn</title>
+
+    <style type="text/css">
+      body {
+        background-color: #121212;
+        color: #dddddd;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+      img {
+        width: 40px;
+        height: 40px;
+      }
+      #submitCountry {
+        background-color: #81f0af;
+        font-weight: 600;
+        border: none;
+        padding: 7px 15px;
+        margin-left: 5px;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      #submitCountry:hover,
+      #submitCountry:focus {
+        font-weight: 550;
+        background-color: #008a39;
+        color: white;
+        outline: 1px solid;
+      }
+      #myInput {
+        box-sizing: border-box;
+        background-image: url("Links/search.svg");
+        background-position: 7px 7px;
+        background-size: 7%;
+        background-repeat: no-repeat;
+        font-size: 16px;
+        /* margin-top: 5px; */
+        padding: 0.4rem 10px 0.4rem 30px;
+        border: none;
+        /* border-bottom: 1px solid #ddd; */
+      }
+
+      #myInput:focus {
+        outline: 3px solid #ddd;
+      }
+
+      /* dropdown */
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f6f6f6;
+        min-width: 230px;
+        overflow: auto;
+        border: 1px solid #ddd;
+        z-index: 1;
+      }
+
+      .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
+
+      .dropdown a:hover {
+        background-color: #ddd;
+      }
+
+      .show {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>
+      <!-- <i class="fas fa-virus"></i> -->
+      <img
+        src="C:\Users\shawn\Desktop\Assignments\CovidVisualizer\myProject\Links\virus.svg"
+      />
+      &nbsp; COVID-19 Data Visualizer
+    </h2>
+    <hr />
+    <div class="ui">
+      <label style="font-size: 17px;">Enter country name : </label>
+      <br />
+      <input
+        type="text"
+        id="myInput"
+        placeholder="Type here"
+        onfocus="showDropdown()"
+        onblur="showDropdown()"
+        onkeyup="filterFunction()"
+        autofocus
+      />
+      <div id="myDropdown" class="dropdown-content">
+        <a href="#about">About</a>
+        <a href="#base">Base</a>
+        <a href="#blog">Blog</a>
+        <a href="#contact">Contact</a>
+        <a href="#custom">Custom</a>
+        <a href="#support">Support</a>
+        <a href="#tools">Tools</a>
+      </div>
+      <input
+        type="submit"
+        id="submitCountry"
+        value="Submit"
+        onclick="runSketch(myPlotSketch), populateSelect();"
+      />
+    </div>
+    <br />
+
+    <div id="sketchContainer"></div>
+    <script>
+      /* When the user focusses/blurs on the inputfield,
+      toggle between hiding and showing the dropdown content */
+      function showDropdown() {
+        document.getElementById("myDropdown").classList.toggle("show");
+      }
+
+      function filterFunction() {
+        var input, filter, ul, li, a, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        div = document.getElementById("myDropdown");
+        a = div.getElementsByTagName("a");
+        for (i = 0; i < a.length; i++) {
+          txtValue = a[i].textContent || a[i].innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            a[i].style.display = "";
+          } else {
+            a[i].style.display = "none";
+          }
+        }
+      }
+    </script>
+    <script
+      src="https://kit.fontawesome.com/ecca2355d7.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.min.js"></script>
+    <script src="Links\grafica.min.js"></script>
+    <!-- <script src="C:\Users\shawn\Desktop\Assignments\CovidVisualizer\myProject\covid.js"></script> -->
+    <script src="sketch.js"></script>
+
+    <script>
+      // This is the sketch launcher
+      let p5Sketch;
+
+      function runSketch(sketch) {
+        if (typeof p5Sketch !== "undefined") {
+          p5Sketch.remove();
+        }
+
+        p5Sketch = new p5(sketch, "sketchContainer");
+      }
+    </script>
+  </body>
+</html>
