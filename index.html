@@ -29,9 +29,7 @@
         list="countries"
         placeholder="Country"
       />
-      <datalist id="countries">
-        <option value="China" onclick="runSketch(myPlotSketch)"></option>
-      </datalist>
+      <datalist id="countries"> </datalist>
       <input
         type="submit"
         id="submitCountry"
@@ -42,18 +40,7 @@
     <br />
 
     <div id="sketchContainer"></div>
-    <script>
-      // This is the sketch launcher
-      let p5Sketch;
 
-      function runSketch(sketch) {
-        if (typeof p5Sketch !== "undefined") {
-          p5Sketch.remove();
-        }
-
-        p5Sketch = new p5(sketch, "sketchContainer");
-      }
-    </script>
     <script>
       //Enter key call to submit button
       var input = document.getElementById("myInput");
@@ -89,5 +76,17 @@
     <script src="Links\grafica.min.js"></script>
     <!-- <script src="C:\Users\shawn\Desktop\Assignments\CovidVisualizer\myProject\covid.js"></script> -->
     <script src="sketch.js"></script>
+    <script>
+      // This is the sketch launcher
+      let p5Sketch;
+
+      function runSketch(sketch) {
+        if (typeof p5Sketch !== "undefined") {
+          p5Sketch.remove();
+        }
+
+        p5Sketch = new p5(sketch, "sketchContainer");
+      }
+    </script>
   </body>
 </html>
