@@ -5,12 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="Links\virus.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="style.css" />
-    <script 
-      src="https://code.jquery.com/jquery-3.5.0.min.js" 
-      integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" 
+    <script
+      src="https://code.jquery.com/jquery-3.5.0.min.js"
+      integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
       crossorigin="anonymous"
-    >
-    </script>
+    ></script>
 
     <title>COVID-19 Visualizer | Shawn</title>
   </head>
@@ -22,16 +21,36 @@
     <hr />
     <div class="ui">
       <label style="font-size: 17px;">Enter country name : </label>
-      <br /></br>
-      <input name="country" id="myInput" list="countries" placeholder="Country" />
-      <datalist id="countries"></datalist>
-      <input type="submit" id="submitCountry" value="Submit" onclick="runSketch(myPlotSketch)"/>
+      <br />
+      <br />
+      <input
+        name="country"
+        id="myInput"
+        list="countries"
+        placeholder="Country"
+      />
+      <datalist id="countries" onclick="runSketch(myPlotSketch)"></datalist>
+      <input
+        type="submit"
+        id="submitCountry"
+        value="Submit"
+        onclick="runSketch(myPlotSketch)"
+      />
     </div>
     <br />
 
     <div id="sketchContainer"></div>
 
     <script>
+      //Enter key call to submit button
+      var input = document.getElementById("myInput");
+      input.addEventListener("keyup", function (event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          document.getElementById("submitCountry").click();
+        }
+      });
+      //Populating countries' names datalist from JSON
       const API = "https://pomber.github.io/covid19/timeseries.json";
       async function getData() {
         let response = await fetch(API);
@@ -41,11 +60,12 @@
         let obj = JSON.parse(stringged);
 
         let affectedCountries = Object.keys(obj);
-        let list = document.getElementById('countries');
-        
-        affectedCountries.forEach(function(item) {
-          let option = document.createElement('option');
+        let list = document.getElementById("countries");
+
+        affectedCountries.forEach(function (item) {
+          let option = document.createElement("option");
           option.value = item;
+          // option.onclick = function() {runSketch(myPlotSketch)};
           list.appendChild(option);
         });
       }

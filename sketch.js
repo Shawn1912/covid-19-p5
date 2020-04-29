@@ -34,7 +34,9 @@ myPlotSketch = (p) => {
       plot
         .getXAxis()
         .setAxisLabelText(
-          "Days from " + dates[0] + " till " + dates[dates.length - 1]
+          `${dates.length} Days from ${dates[0]} till ${
+            dates[dates.length - 1]
+          }`
         );
       plot.getYAxis().setAxisLabelText("No. of patients");
       plot.setTitleText("COVID-19 stats " + countryChoice);
