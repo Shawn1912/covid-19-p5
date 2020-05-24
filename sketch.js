@@ -1,7 +1,7 @@
 const worldAPI = "https://pomber.github.io/covid19/timeseries.json";
 
 function toTitleCase(str) {
-  if (str == "us") return "US";
+  if (str.toLowerCase() == "us") return "US";
   return str.replace(/\w\S*/g, function (txt) {
     return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
   });
